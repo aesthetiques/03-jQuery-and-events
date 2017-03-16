@@ -13,6 +13,7 @@ Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone().removeClass('template');
 
   $newArticle.attr('data-category', this.category);
+  $newArticle.attr('data-author', this.author);
   // TODO: Use jQuery to also add the author name as a data-attribute of the newly cloned article.
   //       Doing so will allow us to use selectors to target articles, based on who wrote them.
 
@@ -34,6 +35,7 @@ sourceData.forEach(function(ele) {
   allArticles.push(new Article(ele));
 });
 
-allArticles.forEach(function(a){
-  $('#articles').append(a.toHtml());
+allArticles.forEach(function(article){
+  // var thisAuthor = ;
+  $('#articles').append(article.toHtml());
 });
