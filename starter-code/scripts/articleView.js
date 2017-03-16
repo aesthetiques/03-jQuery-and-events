@@ -19,11 +19,11 @@ articleView.handleAuthorFilter = function() {
   $('#author-filter').on('change', function() {
     if ($(this).val()) {
       /* TODO: If the select box changes to an option that has a value, we should:
-          1. Hide all of the articles
-          2. Fade in only the articles that match based on on the author
-            that was aselected. Hint: use an attribute selector to find
-            those articles that match the value, and then fade them in.
-        */
+      1. Hide all of the articles
+      2. Fade in only the articles that match based on on the author
+      that was aselected. Hint: use an attribute selector to find
+      those articles that match the value, and then fade them in.
+      */
       var currentAuthor = $(this).val();
       $('article').fadeOut(500);
       $('article').each(function(){
@@ -32,8 +32,8 @@ articleView.handleAuthorFilter = function() {
         }
       });
     } else {
-    /* Otherwise, we should:
-        1. Show all the articles except the template */
+      /* Otherwise, we should:
+      1. Show all the articles except the template */
       $('article').not('.template').fadeIn(1500);
     }
     $('#category-filter').val('');
@@ -44,11 +44,11 @@ articleView.handleCategoryFilter = function() {
   $('#category-filter').on('change', function() {
     if ($(this).val()) {
       /* TODO: If the select box changes to an option that has a value, we should:
-          1. Hide all of the articles
-          2. Fade in only the articles that match based on on the category
-            that was aselected. Hint: use an attribute selector to find
-            those articles that match the value, and then fade them in.
-        */
+      1. Hide all of the articles
+      2. Fade in only the articles that match based on on the category
+      that was aselected. Hint: use an attribute selector to find
+      those articles that match the value, and then fade them in.
+      */
       var currentCategory = $(this).val();
       $('article').fadeOut(500);
       $('article').each(function(){
@@ -57,8 +57,8 @@ articleView.handleCategoryFilter = function() {
         }
       });
     } else {
-    /* Otherwise, we should:
-        1. Show all the articles except the template */
+      /* Otherwise, we should:
+      1. Show all the articles except the template */
       $('article').not('.template').fadeIn(1500);
     }
     $('#author-filter').val('');
@@ -71,42 +71,52 @@ articleView.handleCategoryFilter = function() {
 articleView.handleMainNav = function () {
   $('.main-nav').on('click', '.tab', function() {
     /* TODO:
-      1. Hide all of the .tab-content sections
-      2. Fade in the single .tab-content section that is
-        associated with the .tab element's data-content attribute.
+    1. Hide all of the .tab-content sections
+    2. Fade in the single .tab-content section that is
+    associated with the .tab element's data-content attribute.
     */
   });
   $('.main-nav .tab:first').click();
 };
 
+
+/* TODO: Add a delegated event handler to reveal the remaining paragraphs.
+When a .read-on link is clicked, we can:
+1. Prevent the default action of a link.
+2. Reveal everything in that particular article now.
+3. Hide that read-on link!
+
+// STRETCH GOAl!: change the 'Read On' link to 'Show Less'
+*/
+// $('article').each(function(){
+//   $(this).find('p:not-first').hide();
+// });
+// $('.read-on').click(function(){
+//   $(this).find('p:not-first').show();
+// });
 articleView.setTeasers = function() {
   // Truncate logic to show only first two elements within the article body.
   $('.article-body *:nth-of-type(n+2)').hide();
-  /* TODO: Add a delegated event handler to reveal the remaining paragraphs.
-    When a .read-on link is clicked, we can:
-    1. Prevent the default action of a link.
-    2. Reveal everything in that particular article now.
-    3. Hide that read-on link!
-
-    // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
-  */
-  // $('article').each(function(){
-  //   $(this).find('p:not-first').hide();
-  // });
-  // $('.read-on').click(function(){
-  //   $(this).find('p:not-first').show();
-  // });
-  $('#articles').on('click', 'a.read-on' ,function(show){
-    show.preventDefault();
-    $(this).parent().find('*').show();
-    $(this).hide();
-    // if( $(this).attr() === '.read-on'){
-    //   $(this).removeClass().addClass('show-less').html('Show Less').click(function(){
-    //   $('.article-body *:nth-of-type(n+2)').hide();
-    // }else{
-    //   $(this).removeClass().addClass('read-on').html('Read on').click(function(){
-    // });
-  });
+  var thisShown = false;
+  if(thisShown === false){
+    $('#articles').on('click', 'a.read-on', function(show){
+      show.preventDefault();
+      $(this).parent().find('*').show();
+      $(this).removeClass().addClass('show-less').html('&larr; Show less').click(function(){
+        $('.article-body *:nth-of-type(n+2)').hide();
+        console.log(thisShown);
+      });
+    });
+    thisShown = true;
+    if(thisShown === true){
+      $('#articles').on('click', 'a.show-less', function(show){
+        show.preventDefault();
+        console.log('wat');
+        $(this).removeClass().addClass('read-on').html('Read on &rarr;');
+        thisShown = false;
+      });
+    }
+  }
 };
 
 $('#about-nav').click(function(){
