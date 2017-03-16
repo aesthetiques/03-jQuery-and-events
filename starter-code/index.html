@@ -22,10 +22,10 @@
       <!-- Hamburger Menu -->
         <div class="icon-menu"></div>
         <ul>
-          <li class="tab" data-content="articles"><a href="#" class="icon-home"> Home</a></li>
-          <li class="tab" data-content="about"><a href="#" class="icon-address-book"> About</a></li>
+          <li class="tab" data-content="articles"><a id="home-nav" href="#" class="icon-home"> Home</a></li>
+          <li class="tab" data-content="about"><a id="about-nav" href="#" class="icon-address-book"> About</a></li>
           <li><a href="http://twitter.com/codefellowsSEA" target="_blank" class="icon-twitter3"> Twitter</a></li>
-          <li><a href="http://github.com/" target="_blank" class="icon-github"> GitHub</a></li>
+          <li><a id="github-nav" href="http://github.com/" target="_blank" class="icon-github"> GitHub</a></li>
         </ul>
       </nav>
     </header>
@@ -57,7 +57,7 @@
           <section class="article-body"></section>
           <a href="#" class="read-on">Read on &rarr;</a>
         </article>
-        
+
       </section>
       <section id="about" class="tab-content">
         <header>
@@ -77,11 +77,7 @@
       &copy; 2017 Code Fellows | Static Blog | Happy Ipsum!
     </footer>
     <!-- Vendor Files -->
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Model Files -->
     <script src="scripts/blogArticles.js"></script>
     <script src="scripts/article.js"></script>

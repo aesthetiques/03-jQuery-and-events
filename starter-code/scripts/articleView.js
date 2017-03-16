@@ -25,10 +25,10 @@ articleView.handleAuthorFilter = function() {
             those articles that match the value, and then fade them in.
         */
       var currentAuthor = $(this).val();
-      $('article').fadeOut(1500);
+      $('article').fadeOut(500);
       $('article').each(function(){
         if($(this).attr('data-author') === currentAuthor){
-          $(this).fadeIn(1500);
+          $(this).fadeIn(1000);
         }
       });
     } else {
@@ -50,10 +50,10 @@ articleView.handleCategoryFilter = function() {
             those articles that match the value, and then fade them in.
         */
       var currentCategory = $(this).val();
-      $('article').fadeOut(1500);
+      $('article').fadeOut(500);
       $('article').each(function(){
         if($(this).attr('data-category') === currentCategory){
-          $(this).fadeIn(1500);
+          $(this).fadeIn(1000);
         }
       });
     } else {
@@ -90,9 +90,38 @@ articleView.setTeasers = function() {
 
     // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
   */
+  // $('article').each(function(){
+  //   $(this).find('p:not-first').hide();
+  // });
+  // $('.read-on').click(function(){
+  //   $(this).find('p:not-first').show();
+  // });
+  $('#articles').on('click', 'a.read-on' ,function(show){
+    show.preventDefault();
+    $(this).parent().find('*').show();
+    $(this).hide();
+    // if( $(this).attr() === '.read-on'){
+    //   $(this).removeClass().addClass('show-less').html('Show Less').click(function(){
+    //   $('.article-body *:nth-of-type(n+2)').hide();
+    // }else{
+    //   $(this).removeClass().addClass('read-on').html('Read on').click(function(){
+    // });
+  });
 };
 
-// TODO: Invoke all of the above functions (I mean, methods!):
+$('#about-nav').click(function(){
+  $('#filters').fadeOut(500);
+  $('article').fadeOut(500);
+  $('about').fadeIn(1000);
+});
+
+$('#home-nav').click(function(){
+  $('#filters').fadeIn(1000);
+  $('article').fadeIn(1000);
+  $('about').fadeOut(500);
+});
+
 articleView.populateFilters();
 articleView.handleAuthorFilter();
 articleView.handleCategoryFilter();
+articleView.setTeasers();
