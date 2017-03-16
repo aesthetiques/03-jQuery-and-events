@@ -88,12 +88,6 @@ When a .read-on link is clicked, we can:
 
 // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
 */
-// $('article').each(function(){
-//   $(this).find('p:not-first').hide();
-// });
-// $('.read-on').click(function(){
-//   $(this).find('p:not-first').show();
-// });
 articleView.setTeasers = function() {
   // Truncate logic to show only first two elements within the article body.
   $('.article-body *:nth-of-type(n+2)').hide();
